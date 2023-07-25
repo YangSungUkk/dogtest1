@@ -38,12 +38,18 @@
         <div class="image-upload-wrap">
             <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
             <div class="drag-text">
-                <img src="img/img_upload.png" class="mt-3 upload">
+                <img src="img/img_upload.png" class="mtdd-3 upload">
                 <!-- <h3>Drag and drop a file or select add Image</h3> -->
             </div>
         </div>
         <div class="file-upload-content">
             <img class="file-upload-image" id="face-image" src="#" alt="your image" />
+            <div id="loading" class="animated bounce" style="display: none;">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <p class="text-center">AI가 닮은 강아지 찾는 중</p>
+            </div>
             <p class="result-message"></p>            
             <div id="label-container" class="d-flex flex-column justify-content-around"></div>
             <div class="image-title-wrap">
@@ -60,7 +66,6 @@
         crossorigin="anonymous"></script>
     <script src="src/myScript.js"></script>
     <div id="webcam-container"></div>
-
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script type="text/javascript">
@@ -118,21 +123,21 @@
             switch(prediction[0].className){
                 case "GermanShepherd":
                     resultTitle = "#저먼 셰퍼드"
-                    resultExplain = "저먼과 닮은 당신! 심술과 욕심이 많아보이지만 어쩌구 저쩌구 이렇쿵 저렇쿵 왈가봘부 시끌벅적"
+                    resultExplain = "강쥐계의 손석구. 강쥐계의 불꽃카리스마. <br>날카로운 얼굴선에 강인한 눈과 턱선이 특징이네요<br>길다가 마주치면 바로 상대방은 바로 눈을 피할꺼예요"
                     break;
                 case "Bulldog":
                     resultTitle = "#불독"
-                    resultExplain = "불독과 닮은 당신! 심술과 욕심이 많아보이지만 어쩌구 저쩌구 이렇쿵 저렇쿵 왈가봘부 시끌벅적"
+                    resultExplain = "강쥐계의.. 마동석<br>불독은 전체적으로 단단하고 다부지게 생긴 것이 특징입니다.<br>카리스마가 매력적인 동시에 친근함까지 갖춘 매력덩어리네요."
                     break;
                 case "Poodle":
                     resultTitle = "#푸들"
-                    resultExplain = "푸들과 닮은 당신! 심술과 욕심이 많아보이지만 어쩌구 저쩌구 이렇쿵 저렇쿵 왈가봘부 시끌벅적"
+                    resultExplain = "큐티뽀짝 강쥐계의 박보영<br>작은 얼굴에 오목조목한 이목구비, 크고 초롱초롱한 눈망울!<br>불쌍한 표정을 지으면 상대방은 뭐든지 다 해줄꺼예요"
                     break;
                 default:
                     resultTitle = "#알수없음"
                     resultExplain = "알수없게 생겼네"                
             }
-            var title ="<div class='" + prediction[0].className + "-dog-title'>" + resultTitle + "</div>"
+            var title ="<div class='" + prediction[0].className + "-dog-title dog-title'>" + resultTitle + "</div>"
             var explain ="<div class='dog-explain'>" + resultExplain + "</div>"
             $('.result-message').html(title + explain);
             var barWidth;
@@ -152,8 +157,8 @@
             }
             var labelTitle;
             switch (prediction[i].className) {
-                case "BulGermanShepherdldog":
-                    labelTitle = "저먼 셰퍼드상"
+                case "GermanShepherd":
+                    labelTitle = "저먼셰퍼드상"
                     break;
                 case "Bulldog":
                     labelTitle = "불독상"
@@ -179,13 +184,17 @@
                 reader.onload = function (e) {
                     $('.image-upload-wrap').hide();
                     $('.file-upload-image').attr('src', e.target.result);
+                    $('#loading').show();
                     $('.file-upload-content').show();
                     $('.image-title').html(input.files[0].name);
+                    $('.remove-image').hide();
                 };
 
                 reader.readAsDataURL(input.files[0]);
                 init().then(()=>{
                     predict();
+                    $('#loading').hide();
+                    $('.remove-image').show();
                 });
                 
 

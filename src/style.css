@@ -13,11 +13,12 @@ body {
 
 h1{
   font-family: 'Cafe24Ssurround', 'sans-serif';
+  font-size: calc(1.5rem + 1vw) !important;
 }
 
 h4{
   font-family: 'Cafe24Ssurround', 'sans-serif';
-  font-size: (1rem + 1.5vw);
+  font-size: calc(0.5rem + 1vw) !important;
 }
 .section{
   margin-top: 100px;
@@ -39,22 +40,59 @@ h4{
     font-size: 1rem;
   }
 }
+/* 
+@media screen and (min-width: 450px) {
+  html, .container, .upload{
+    max-width: 500px !important;
+    max-height: 702px;
+    background-size: 600px !important;
+    margin: 0 auto;
+  }
+}
+
+ @media screen and (min-width: 600px) {
+  html, .container, .upload{
+    max-width: 900px !important;
+    max-height: 600px;
+    background-size: 350px !important;
+    margin: 0 auto;
+  }
+} 
+
+@media screen and (min-width: 600px) {
+  html, .container, .upload{
+    max-width: 950px !important;
+    max-height: 702px;
+    background-size: 600px !important;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  html, .container, .upload{
+    max-width: 1140px !important;
+    max-height: 702px;
+    background-size: 710px !important;
+    margin: 0 auto;
+  }
+} */
 
 .upload{
-  width: 60%;  
+  width: 100%;  
 }
 
 /* 파일업로드 시작 */
 .file-upload {
   margin: 0 auto;
   /* padding: 15% 3%; */
-  height: 42vw; /* 넓이에 따라 크기 결정 */
+  height: 35vw; /* 넓이에 따라 크기 결정 */
   border-radius: 10px;
   border: solid 1.2px #f6f7fa;
   background: url(../img/backcontent.png) center;
-  background-size : 48vw ;
+  /* background-size : 70vw ; */
+  background-size : contain;
   background-repeat: no-repeat;
-  background-position: 52% 1%;
+  background-position: 51% 1%;
 }
 
 .file-upload-btn {
@@ -97,26 +135,19 @@ h4{
   height: 100%;
   outline: none;
   opacity: 0;
-  cursor: pointer;
+  cursor: pointer;  
 }
 
 .image-upload-wrap {
   position: relative;
-  margin-top: 20px;
-  border: 4px dashed #1fb264;
-  object-fit: contain;
-  border-radius:10px;
-  border: dashed 1.5px #35465d;
-  background-color: #ffffff;
-  width: 60%;
+  object-fit: cover;
+  width: 30%;
   margin: 0 auto;
-  top: 99%;
-  
+  top: 99%;  
 }
 
 .image-upload-wrap:hover {
-  background-color: #cecece;
-  border: dashed 1.5px #35465d;
+  transform:scale(1.1);
 }
 
 .image-dropping {
@@ -142,11 +173,10 @@ h4{
 
 .file-upload-image {
   position: relative;
-  height: 32vw;
-  /* width: 32%; */
+  height: 27vw; /* 넓이에 따라 크기 결정 */
   /* margin: auto; */
   padding: 20px;
-  margin-top: 4%;
+  margin-top: 3%;
 }
 
 .remove-image {
@@ -202,7 +232,8 @@ h4{
   font-family: 'Cafe24Ssurround', 'sans-serif';
   width: 80%;
   margin: 0 auto;
-  font-size: 1.3rem;
+  font-size: calc(0.5rem + 1vw);
+  
 }
 
 .align-items-center {
@@ -211,19 +242,39 @@ h4{
 
 .result-message {
   font-family: 'Cafe24Ssurround', 'sans-serif';
-  font-size: 1.7rem;
+  font-size: calc(0.5rem + 1vw);
   position: relative;
   margin-top: 0%;
   padding-left: 10%;
   padding-right: 10%;
 }
-
-/* 그래프 */
-.dog-explain{
-  margin-top: 7%;
+.dog-title{
+  margin-top: 1%;
 }
 
+.dog-explain{
+  margin-top: 4%;
+}
 
+.text-center{
+  text-align: center;
+  font-family: 'Cafe24Ssurround', 'sans-serif';
+  font-size: calc(0.1rem + 1vw) !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 그래프 */
 .bar-container {
   height: 2.7rem;
 }
